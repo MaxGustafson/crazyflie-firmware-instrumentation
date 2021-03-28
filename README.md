@@ -1,22 +1,6 @@
-# Crazyflie Firmware  [![CI](https://github.com/bitcraze/crazyflie-firmware/workflows/CI/badge.svg)](https://github.com/bitcraze/crazyflie-firmware/actions?query=workflow%3ACI)
+# Crazyflie Firmware Instrumentation
 
-This project contains the source code for the firmware used in the Crazyflie range of platforms, including the Crazyflie 2.X and the Roadrunner.
-
-### Crazyflie 1.0 support
-
-The 2017.06 release was the last release with Crazyflie 1.0 support. If you want
-to play with the Crazyflie 1.0 and modify the code, please clone this repo and
-branch off from the 2017.06 tag.
+This project instruments the crazyflie firmware to analyze how the controllers bahave with different amount of jitter.
 
 ## Building and Flashing
-See the [building and flashing instructions](docs/building-and-flashing/build.md) in the github docs folder.
-
-
-## Official Documentation
-
-Check out the [Bitcraze crazyflie-firmware documentation](https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/) on our website.
-
-
-## License
-
-The code is licensed under LGPL-3.0
+See the [building and flashing instructions](docs/building-and-flashing/build.md) from the original projects github docs folder.
