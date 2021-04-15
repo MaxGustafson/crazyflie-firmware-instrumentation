@@ -55,6 +55,11 @@
 #include "static_mem.h"
 #include "rateSupervisor.h"
 
+// Imports and declares the myLoopEvent
+#include "eventtrigger.h"
+EVENTTRIGGER(myLoopEvent, uint8, tid)
+
+
 static bool isInit;
 static bool emergencyStop = false;
 static int emergencyStopTimeout = EMERGENCY_STOP_TIMEOUT_DISABLED;
@@ -237,6 +242,12 @@ static void stabilizerTask(void* param)
   while(1) {
     // The sensor should unlock at 1kHz
     sensorsWaitDataReady();
+
+    // Sets the value of the tid variable
+    eventTrigger_myLoopEvent_payload.tid = 1;
+
+    // Trigger the event
+    eventTrigger(&eventTrigger_myLoopEvent);
 
     if (healthShallWeRunTest())
     {
