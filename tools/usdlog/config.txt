@@ -5,6 +5,6 @@ log   # file name
 on:fixedFrequency
 1     # frequency
 1     # mode (0: disabled, 1: synchronous stabilizer, 2: asynchronous)
-log "second"	# Just write "second" once per second
-on:myLoopEvent	# Do just want to log the payload really
-log "loop"
+"second"	# Just write "second" once per second
+on:myEvent	# Do just want to log the payload really
+"loop"

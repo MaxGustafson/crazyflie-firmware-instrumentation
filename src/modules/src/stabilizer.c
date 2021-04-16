@@ -57,7 +57,7 @@
 
 // Imports and declares the myLoopEvent
 #include "eventtrigger.h"
-EVENTTRIGGER(myLoopEvent, uint8, tid)
+EVENTTRIGGER(myEvent, uint8, var1)
 
 
 static bool isInit;
@@ -243,11 +243,11 @@ static void stabilizerTask(void* param)
     // The sensor should unlock at 1kHz
     sensorsWaitDataReady();
 
-    // Sets the value of the tid variable
-    eventTrigger_myLoopEvent_payload.tid = 1;
+    // Sets the value of the var1 variable
+    eventTrigger_myEvent_payload.var1 = tick;
 
     // Trigger the event
-    eventTrigger(&eventTrigger_myLoopEvent);
+    eventTrigger(&eventTrigger_myEvent);
 
     if (healthShallWeRunTest())
     {
@@ -296,6 +296,11 @@ static void stabilizerTask(void* param)
           && RATE_DO_EXECUTE(usddeckFrequency(), tick)) {
         usddeckTriggerLogging();
       }
+
+      if (tick > 100) {
+    	  usd.logging = 0;
+      }
+
     }
     calcSensorToOutputLatency(&sensorData);
     tick++;
