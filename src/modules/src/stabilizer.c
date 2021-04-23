@@ -162,6 +162,36 @@ static void compressSetpoint()
   setpointCompressed.az = setpoint.acceleration.z * 1000.0f;
 }
 
+
+
+
+/* Returns a Psudeo random generated number using 
+an implemented Linear Congruential Generator. Parameters a,c and m are chosen 
+according to Borland Software Coorporations model.
+
+Output: double res: Normalised Psuedo Random Number in range 0<X<1 
+*/
+
+#define e (32) //Exponent 
+#define a (22695477) //Multiplier
+#define c (1) //Increment
+#define X0 (8) //Seed. Important. Only valid for X0 < m
+static long X;
+
+static double lcg()
+{
+
+long long m; // Modulo
+double res; //Result to print
+
+m = pow(2,e); //Calculate modulo
+
+X = (a*X + c)%(m); //Generate new nbr
+res = (double)X/(m-1); //Normalise
+
+return res;
+}
+
 void stabilizerInit(StateEstimatorType estimator)
 {
   if(isInit)
@@ -232,7 +262,15 @@ static void stabilizerTask(void* param)
 
   DEBUG_PRINT("Ready to fly.\n");
 
+ // Introduce seed X0 for Psuedo Random Number Generators
+  X=X0;
+  double rngNum;
   while(1) {
+
+    rngNum = lcg();
+
+    if(rngNum > 0.9) {continue;}
+
     // The sensor should unlock at 1kHz
     sensorsWaitDataReady();
     
