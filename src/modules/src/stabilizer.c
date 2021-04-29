@@ -269,7 +269,7 @@ static void stabilizerTask(void* param)
 
     rngNum = lcg();
 
-    if(rngNum > 0.9) {continue;}
+    if(rngNum > 0.1) {continue;}
 
     // The sensor should unlock at 1kHz
     sensorsWaitDataReady();
